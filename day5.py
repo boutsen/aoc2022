@@ -18,8 +18,8 @@ def crane_operation(stack, instructions, mode = 0):
         if mode == 0:
             for i in range(0,nr_move):
                 stack[st2].insert(0,stack[st1].pop(0))
-        if mode == 1:
-            for block in reversed([stack[st1].pop(0) for idx in range(0,nr_move) if len(stack[st1]) > 0]):
+        elif mode == 1:
+            for block in reversed([stack[st1].pop(0) for _ in range(0,nr_move) if len(stack[st1]) > 0]):
                 stack[st2].insert(0,block)
 
     return ''.join([ stack[i][0] for i in range(1,len(stack)+1) if len(stack[i]) > 0])
