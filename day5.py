@@ -13,13 +13,12 @@ for line in f.readlines():
         INSTRUCTIONS.append([(int(a),int(b),int(c)) for a,b,c in (re.findall("move (\d+) from (\d+) to (\d+)", line))][0])
 
 def crane_operation(stack, instructions, mode = 0):
-    for instruction in instructions:
-        (nr_move,st1,st2) = (instruction[0],instruction[1],instruction[2])
+    for (mv,st1,st2) in instructions:
         if mode == 0:
-            for i in range(0,nr_move):
+            for i in range(0,mv):
                 stack[st2].insert(0,stack[st1].pop(0))
         elif mode == 1:
-            for block in reversed([stack[st1].pop(0) for _ in range(0,nr_move) if len(stack[st1]) > 0]):
+            for block in reversed([stack[st1].pop(0) for _ in range(0,mv) if len(stack[st1]) > 0]):
                 stack[st2].insert(0,block)
 
     return ''.join([ stack[i][0] for i in range(1,len(stack)+1) if len(stack[i]) > 0])
