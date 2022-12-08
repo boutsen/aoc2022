@@ -1,6 +1,5 @@
 f = open("inputs/day8", "r")
-
-DATA =[list(map(int, line.strip())) for line in f.readlines()]
+DATA = [[int(x) for x in line.strip()] for line in f.readlines()]
 
 w = len(DATA)
 h = len(DATA[0])
