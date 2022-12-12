@@ -11,12 +11,8 @@ print("Part1:", sum([(1 + sum([OPERATIONS[cycle] for cycle in range(n-1)]))*n fo
 
 register, CRT = 1, ""
 for cycle, operation in enumerate(OPERATIONS):
-    if cycle % 40 == 0:
-        CRT += "\n"
-    if abs((cycle % 40)-register) < 2:
-        CRT += LIGHT
-    else:
-        CRT += DARK
+    if cycle % 40 == 0: CRT += "\n"
+    CRT += LIGHT if abs((cycle % 40)-register) < 2 else DARK
     register += operation
 
 print("Part2:", "".join(CRT))

@@ -2,7 +2,7 @@ import copy
 import math
 import re
 
-f = open("inputs/test", "r")
+f = open("inputs/day11", "r")
 
 DATA = f.read().split("\n\n")
 MONKEYS = []
