@@ -5,20 +5,16 @@ DATA = [tuple(map(eval, line.split("\n"))) for line in f.read().split("\n\n")]
 
 def compare(left, right):
     n1, n2 = len(left), len(right)
-
     for i in range(max(n1, n2)):
         if i >= n1: return True
-        if i >= n2: return False
+        elif i >= n2: return False
 
         (l, r) = (left[i], right[i])
         if type(l) is int and type(r) is int:
             if l < r: return True
             elif l > r: return False
         else:
-            if type(l) is int: l = [l]
-            if type(r) is int: r = [r]
-
-            res = compare(l, r)
+            res = compare([l] if type(l) is int else l, [r] if type(r) is int else r)
             if res is not None: return res
 
 
@@ -29,8 +25,7 @@ def sort(l):
     n = len(l)
     for i in range(n - 1):
         for j in range(0, n - i - 1):
-            if compare(l[j + 1], l[j]):
-                l[j], l[j + 1] = l[j + 1], l[j]
+            if compare(l[j + 1], l[j]): l[j], l[j + 1] = l[j + 1], l[j]
 
 
 L1, L2 = zip(*DATA)
